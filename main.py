@@ -7,14 +7,8 @@
 
 import argparse
 from datetime import datetime
-import random
-import numpy as np
 from task import *
-import os
-import time
-from utils import *
 from params import *
-import sys
 from manifold import *
 from gnn import RiemannianGNN
 

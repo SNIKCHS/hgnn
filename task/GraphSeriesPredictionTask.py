@@ -65,7 +65,9 @@ class GraphSeriesPredictionTask(BaseTask):
 		return scores, loss
 
 	def run_gnn(self):
-		train_loader, dev_loader, test_loader= self.load_data()
+		train_loader, dev_loader, test_loader = self.load_data()
+
+
 
 		task_model = GraphSeriesPrediction(self.args, self.logger, self.rgnn, self.manifold).cuda()
 		model = nn.parallel.DistributedDataParallel(task_model,

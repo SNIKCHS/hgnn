@@ -45,6 +45,7 @@ class NodeClassificationTask(BaseTask):
 			        sample['weight'].cuda().float(),
 			        sample['features'].cuda().float(),
 					)
+
 		loss = loss_function(scores,
 						 sample['y_train'].cuda().float(), 
 						 sample['train_mask'].cuda().float()) 

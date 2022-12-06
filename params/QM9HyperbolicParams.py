@@ -40,7 +40,7 @@ def add_params(parser):
     parser.add_argument('--tie_weight', type=str2bool, default="False") 
     parser.add_argument('--apply_edge_type', type=str2bool, default="True") 
     parser.add_argument('--edge_type', type=int, default=6) 
-    parser.add_argument('--embed_manifold', type=str, default='euclidean', choices=['euclidean', 'hyperbolic']) 
+    parser.add_argument('--embed_manifold', type=str, default='euclidean', choices=['euclidean', 'hyperbolic'])
     parser.add_argument('--metric', type=str, default="mae", choices=['rmse', 'mae']) 
     parser.add_argument('--train_file', type=str, default='data/qm9/molecules_train_qm9.json')
     parser.add_argument('--dev_file', type=str, default='data/qm9/molecules_valid_qm9.json')

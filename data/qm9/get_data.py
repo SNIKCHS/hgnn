@@ -8,9 +8,7 @@
 import sys, os
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 from rdkit import Chem
-from rdkit.Chem import rdmolops
-from rdkit.Chem import QED
-import glob
+
 import json
 import numpy as np
 from utils import bond_dict, dataset_info, need_kekulize, to_graph
