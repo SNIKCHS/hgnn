@@ -55,7 +55,7 @@ parser.add_argument('--test_file', type=str, default='data/qm9/molecules_test_qm
 parser.add_argument('--total_atom', type=int, default=6)
 parser.add_argument('--num_feature', type=int, default=6)
 parser.add_argument('--num_property', type=int, default=12)
-parser.add_argument('--prop_idx', type=int, default=0)
+parser.add_argument('--prop_idx', type=int, default=7)  # 训练哪个label # mu,alpha,homo,lumo,gap,r2,zpve,u0,u298,h298,g298,cv
 parser.add_argument('--is_regression', type=str2bool, default=True)
 parser.add_argument('--normalization', type=str2bool, default=False)
 parser.add_argument('--remove_embed', type=str2bool, default=False)

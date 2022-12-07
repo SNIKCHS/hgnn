@@ -33,6 +33,8 @@ class GraphDataset(Dataset):
 
 	def __getitem__(self, idx):
 		graph = self.dataset[idx]
+		print(graph)
+		exit(0)
 		node_num = len(graph['node_features'])
 		# add self connection and a virtual node
 		virtual_weight = self.args.edge_type - 1 if hasattr(self.args, 'edge_type') else 1
@@ -47,7 +49,7 @@ class GraphDataset(Dataset):
 			weight[dst].append(w)
 		if self.args.normalization:
 			normalize_weight(adj_mat, weight)
-		node_feature = graph['node_features']
+		node_feature = graph['node_features']  # onehot
 		if isinstance(node_feature[0], int):
 			new_node_feature = np.zeros((len(node_feature), self.args.num_feature))
 			for i in range(len(node_feature)):
@@ -61,5 +63,5 @@ class GraphDataset(Dataset):
 		          'node': node_feature,
 		          'adj_mat': adj_mat,
 		          'weight': weight,
-		          'label': graph['targets']
+		          'label': graph['targets'] # mu,alpha,homo,lumo,gap,r2,zpve,u0,u298,h298,g298,cv
 		        }

@@ -103,6 +103,9 @@ class BaseTask(object):
         dev_dataset = dataset_class(self.args, self.logger, split='dev')
         test_dataset = dataset_class(self.args, self.logger, split='test')
 
+        item = train_dataset.__getitem__(0)
+
+
         train_loader = DataLoader(train_dataset, batch_size=1, collate_fn=collate_fn,
                                   num_workers=0)
         dev_loader = DataLoader(dev_dataset, batch_size=1, collate_fn=collate_fn,
