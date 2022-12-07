@@ -1,6 +1,6 @@
 import argparse
 from datetime import datetime
-from task import *
+from Task_test import GraphPredictionTask
 from params import *
 from manifold import *
 from gnn import RiemannianGNN
@@ -11,9 +11,11 @@ def add_embed_size(args):
         args.embed_size += 1
 
 parser = argparse.ArgumentParser(description='RiemannianGNN')
+parser.add_argument('--name', type=str,default='hgnn_qm9')
 parser.add_argument('--task', type=str,default='qm9', choices=['qm9'])
 parser.add_argument('--select_manifold', type=str, default='lorentz', choices=['poincare', 'lorentz', 'euclidean'])
 parser.add_argument('--seed', type=int, default=int(time.time()))
+parser.add_argument('--device', type=str, default='cuda')
 
 parser.add_argument('--lr', type=float, default=0.001)
 parser.add_argument('--lr_hyperbolic', type=float, default=0.001)
