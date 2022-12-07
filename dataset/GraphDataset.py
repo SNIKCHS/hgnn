@@ -33,8 +33,6 @@ class GraphDataset(Dataset):
 
 	def __getitem__(self, idx):
 		graph = self.dataset[idx]
-		print(graph)
-		exit(0)
 		node_num = len(graph['node_features'])
 		# add self connection and a virtual node
 		virtual_weight = self.args.edge_type - 1 if hasattr(self.args, 'edge_type') else 1

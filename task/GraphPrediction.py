@@ -25,7 +25,7 @@ class GraphPrediction(nn.Module):
 		            bias=False
 		    )
 			if self.args.embed_manifold == 'hyperbolic':
-				self.manifold.init_embed(self.embedding)
+				self.manifold.init_embed(self.embedding)  #Normalize vector such that it is located on the hyperboloid
 				self.args.hyp_vars.append(self.embedding)
 			elif self.args.embed_manifold == 'euclidean':
 				nn_init(self.embedding, self.args.proj_init)
@@ -48,10 +48,13 @@ class GraphPrediction(nn.Module):
 			adj: the neighbor ids of each node [1, node_num, max_neighbor]
 			weight: the weight of each neighbor [1, node_num, max_neighbor]
 			features: [1, node_num, input_dim]
+			mask: 一个数，代表有几个原子
 		"""
 		assert adj.size(0) == 1
 		node, adj, weight = node.squeeze(0), adj.squeeze(0), weight.squeeze(0)
+
 		node_num, max_neighbor = adj.size(0), adj.size(1)
+
 		mask = (th.arange(1, node_num + 1) <= mask.item()).view(-1, 1).float().cuda() # [node_num, 1]
 
 		if self.args.embed_manifold == 'hyperbolic':

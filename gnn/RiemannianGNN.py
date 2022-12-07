@@ -168,8 +168,9 @@ class RiemannianGNN(nn.Module):
 		# split the adjacency list and weights based on edge types
 		adj_list, weight = self.split_input(adj_list, weight)
 		# gnn layers
+
 		for step in range(self.args.gnn_layer):
-			node_repr = self.manifold.log_map_zero(node_repr) * mask if step > 0 else node_repr * mask
+			node_repr = self.manifold.log_map_zero(node_repr) * mask if step > 0 else node_repr * mask  # 对1~gnn_layer-1层
 			combined_msg = self.get_combined_msg(step, node_repr, adj_list, weight, mask)
 			combined_msg = self.dropout(combined_msg) * mask
 			node_repr = self.manifold.exp_map_zero(combined_msg) * mask

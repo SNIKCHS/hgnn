@@ -103,7 +103,7 @@ class BaseTask(object):
         dev_dataset = dataset_class(self.args, self.logger, split='dev')
         test_dataset = dataset_class(self.args, self.logger, split='test')
 
-        item = train_dataset.__getitem__(0)
+
 
 
         train_loader = DataLoader(train_dataset, batch_size=1, collate_fn=collate_fn,
@@ -148,7 +148,7 @@ class GraphPredictionTask(BaseTask):
     def run_gnn(self):
         train_loader, dev_loader, test_loader = self.load_data()
 
-        model = GraphPrediction(self.args, self.logger, self.rgnn, self.manifold).cuda()
+        model = GraphPrediction(self.args, self.logger, self.rgnn, self.manifold).cuda()  # embedding等被加入args.hyp_vars
         model = model.to(self.device)
         if self.args.is_regression:
             loss_function = nn.MSELoss(reduction='sum')
