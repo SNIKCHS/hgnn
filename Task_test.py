@@ -29,6 +29,11 @@ def collate_fn(batch):
         data['adj_mat'] = np.array(data['adj_mat']).astype(np.int32)
         data['weight'] = np.array(data['weight']).astype(np.float32)
         data['label'] = np.array(data['label'])
+        print(data['node'].shape)
+        # print(data['adj_mat'].shape)
+        # print(data['weight'].shape)
+        # print(data['label'].shape)
+
     return default_collate(batch)
 
 
@@ -106,11 +111,11 @@ class BaseTask(object):
 
 
 
-        train_loader = DataLoader(train_dataset, batch_size=1, collate_fn=collate_fn,
+        train_loader = DataLoader(train_dataset, batch_size=4, collate_fn=collate_fn,
                                   num_workers=0)
-        dev_loader = DataLoader(dev_dataset, batch_size=1, collate_fn=collate_fn,
+        dev_loader = DataLoader(dev_dataset, batch_size=4, collate_fn=collate_fn,
                                 num_workers=0)
-        test_loader = DataLoader(test_dataset, batch_size=1, collate_fn=collate_fn,
+        test_loader = DataLoader(test_dataset, batch_size=4, collate_fn=collate_fn,
                                  num_workers=0)
         self.logger.info("train data size: %d" % len(train_dataset))
         self.logger.info("dev data size: %d" % len(dev_dataset))
